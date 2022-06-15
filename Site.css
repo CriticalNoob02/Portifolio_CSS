@@ -1,0 +1,653 @@
+/*Zerando o navegador e deixando o scroll suave*/
+body {
+    height: 100vh;
+    width: 100vw;
+    margin: 0;
+    padding: 0;
+    scroll-behavior: smooth;
+    font-family: 'Ubuntu', sans-serif;
+    background-color: rgb(25, 25, 25);
+    Color: #EEEEEE;
+}
+/*Fazendo a Scrollbar sumir para não atrapalhar o visual*/
+::-webkit-scrollbar{
+    display: none;
+}
+/*deixando cada pagina com 100% do tamanho, para fazer a rolagem ficar mais bonita, e já ativando a rolagem na horizontal*/
+.container {
+    height: 100%;
+    width: 100%;
+    scroll-snap-type: x mandatory;
+    overflow-x: scroll;
+    display: flex;
+}
+/*Estilizando o texto e audio de fora*/
+.container-2{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+/*animação do texto entrando*/
+.container-2 .surpresa,
+.container-2 audio{
+    animation: fadeInLeft;
+    animation-duration: 5s; 
+}
+/*Afirmando onde a rolagem inicia e centralizando os elementos*/
+section{
+    flex: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    width: 100vw;
+    scroll-snap-align: start;
+    flex-direction: row-reverse
+    
+}
+/*o elemento da primeira Pagina, definindo tamanho e as sombras para dar um charme*/
+.box{
+    position: relative;
+    height: 25rem;
+    width: 25rem;
+    border-radius: 50%;
+    background: #282828;
+    box-shadow:  35px 35px 70px #1d1d1d,
+             -35px -35px 70px #333333;
+    overflow: hidden;         
+}
+/*Usando um pseudo-elemento para a as cores*/
+.box::before{
+    content: " ";
+    position: absolute;
+    inset: -0.625rem 6.563rem;
+    background: linear-gradient(315deg, #00ccFF, #d400d4);
+    transition: 0.5s;
+    animation: cores 4s linear infinite;
+}
+/*Ativando um hover para as cores se unirem ao passar o mouse*/
+.box:hover::before{
+    inset: -1.25rem 0rem;
+}
+/*Animando as cores*/
+@keyframes cores{
+    0%{
+        transform: rotate(0deg);
+    }
+    100%{
+        transform: rotate(360deg);
+    }
+}
+/*criando um novo pseudo-elemento para delimitar as cores num circulo*/
+.box::after{
+    content: " ";
+    position: absolute;
+    inset: 0.375rem;
+    background: #282828;
+    border-radius: 50%;
+    z-index: 1;
+}
+/*Criando o local para inserir a foto*/
+.content{
+    position: absolute;
+    inset: 1.875rem;
+    border: 6px solid #282828 ;
+    border-radius: 50%;
+    z-index: 3;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+/*Inserindo e ajustando a imagem*/
+.content img{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    object-fit: cover;
+    transition: 0.5s;
+    z-index: 3;
+}
+/*Fazendo a imagem sumir quando passar o mouse*/
+.box:hover .content img{
+    opacity: 0;
+}
+/*Modelando Textos*/
+.content h2{
+    font-size: 1.4em;
+    letter-spacing: 0.05em;
+    text-align: center;
+    text-transform: uppercase;
+    text-shadow: 1px 1px 8px #ffffff8f;
+    transition: 0s;
+}
+/*               */
+.content h2 span{
+    font-weight: 300;
+    font-size: 0.85em;
+}
+
+/*Iniciando Modelagem da Segunda Pagina*/
+
+/* Ajustando a localização dos Cards para o centro*/
+.conteudo{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+/*Configurando o Card principal*/
+.conteudo .card{
+    position: relative;
+    width: 20rem;
+    height: 25rem;
+    display: flex;
+    margin: 2.5rem 1.875rem;
+    transition: 0.5s;
+}
+/*Elemento quadrado atras do Card*/
+.conteudo .card::before{
+    content: "";
+    position: absolute;
+    height: 100%;
+    width: 50%;
+    top:0;
+    left: 3.125rem;
+    background: #EEEEEE;
+    border-radius: 0.5rem;
+    transform: skewX(15deg);
+    transition: 0.5s;
+}
+/*Brilho do elemento atras do Card*/
+.conteudo .card::after{
+    content: "";
+    position: absolute;
+    height: 100%;
+    width: 55%;
+    top:0;
+    left: 3.125rem;
+    background: #EEEEEE;
+    border-radius: 0.5rem;
+    transform: skewX(15deg);
+    transition: 0.5s;
+    filter: blur(35px);
+}
+/*Dando o movimento para os dois pseudo-elementos*/
+.conteudo .card:hover:before,
+.conteudo .card:hover:after
+{
+    transform: skewX(0);
+    left: 1.25rem ;
+    width: calc(100% - 5.625rem);
+}
+/*Colorindo o fundo dos dois pseudo-elementos */
+.conteudo .card:nth-child(1):before,
+.conteudo .card:nth-child(1):after
+{
+    background: linear-gradient(315deg, #FAF3F3, #79A3B1) ;
+}
+/*Colorindo o fundo dos dois pseudo-elementos */
+.conteudo .card:nth-child(2):before,
+.conteudo .card:nth-child(2):after
+{
+    background: linear-gradient(315deg, #FAF3F3, #7C9473 ) ;
+    
+}
+/*Criando uma caixinha com animação para ficar a frente do Card*/
+.conteudo .card span{
+    display: block;
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 50;
+    pointer-events: none;
+}
+/*Caixinha superior*/
+.conteudo .card span::before{
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 0.5rem;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    opacity: 0;
+    transition: 0.5s;
+    animation: animado 1.8s ease-in-out infinite;
+}
+/*Surgir apos o Hover*/
+.conteudo .card:hover span::before{
+    top: -3.125rem;
+    left: 3.125rem;
+    width: 6.25rem;
+    height: 6.25rem;
+    opacity: 1;
+}
+/*Caixinha inferior*/
+.conteudo .card span::after{
+    content: "";
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 0.5rem;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    opacity: 0;
+    transition: 0.5s;
+    animation: animado 1.8s ease-in-out infinite;
+}
+/*Surgir apos o Hover*/
+.conteudo .card:hover span::after{
+    bottom: -3.125rem;
+    right: 3.125rem;
+    width: 6.25rem;
+    height: 6.25rem;
+    opacity: 1;
+}
+/*Criando a animação para as caixinhas*/
+@keyframes animado{
+0%, 100%{
+    transform: translateY(10px);
+}
+50%{
+    transform: translateY(-10px);
+}
+}
+
+/*Alinhando e estilizando o conteudo do Card*/
+.card .conteudo-2{
+    height: 70%;
+    position: relative;
+    left: 0;
+    padding: 1.875rem 2.5rem;
+    margin: auto;
+    background: rgba(0, 0, 0, 0.05);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    border-radius: 0.5rem;
+    backdrop-filter: blur(10px);
+    z-index: 1;
+    transition: 0.5s;
+}
+/*Estilizando os Textos*/
+.card .conteudo-2 h1{
+    font-size: 1.8em;
+    margin-top: 0.313rem;
+}
+.card .conteudo-2 p{
+    font-size: 1.2em;
+    line-height: 1.4em;
+    color:#F9F9F9 ;
+}
+.card .conteudo-2 a{
+    display: inline-block;
+    font-size: 1.3em;
+    color: #EEEEEE;
+    background: #282828;
+    padding: 0.625rem;
+    border-radius: 0.25rem;
+    text-decoration: none;
+}
+
+
+/*Iniciando Modelagem da Terceira Pagina*/
+
+.box2{
+     width: 85%;
+    height: 35%;
+    margin-bottom: 5vh;
+    padding: 3vh 5vh;
+    background-color: #61616134;
+    border-radius: 10px;
+    border-top: 1px solid rgba(255, 255, 255, 0.234);
+    border-left: 1px solid rgba(255, 255, 255, 0.234);
+    backdrop-filter: blur(5px);
+    box-shadow:  20px 20px 60px #1a1a1a,
+             -20px -20px 60px #242424;
+}
+/*Configurando a caixa do texto*/
+.title{
+    text-align: center;
+    width: 85%;
+    height: 35%;
+    margin-bottom: 5vh;
+    padding: 3vh 5vh;
+    background-color: #61616134;
+    border-radius: 10px;
+    border-top: 1px solid rgba(255, 255, 255, 0.234);
+    border-left: 1px solid rgba(255, 255, 255, 0.234);
+    backdrop-filter: blur(5px);
+    box-shadow:  20px 20px 60px #1a1a1a,
+             -20px -20px 60px #242424;
+    text-align: center;
+    font-size: 1.5rem;
+    text-shadow: 1px 1px 8px #79a3b1;
+}
+
+.box2 p{
+    font-size: 1.3rem;
+    margin-bottom: 5vh;
+}
+
+.box2 a{
+    font-size: 1.3rem;
+    color: #EEEEEE;
+    background: #0000006f;
+    padding: 0.625rem;
+    border-radius: 4px;
+    text-decoration: none;
+    margin: 0 0.5vw;
+    
+}
+/*Caixa com instrução para a proxima pagina*/
+.container-2 .seta1{
+    margin: -8vh -68vw 1vh 1vw;
+    background: #0000006f;
+    color: #EEEEEE;
+    font-size: 1.3rem;
+    padding: 0.625rem;
+    border-radius: 4px;
+    border-top: 1px solid rgba(255, 255, 255, 0.234);
+    border-left: 1px solid rgba(255, 255, 255, 0.234);
+    cursor: default;
+}
+/*Caixa com instrução para a proxima pagina*/
+.container-2 .seta2{
+    margin: -8vh 68vw 1vh 1vw;
+    background: #0000006f;
+    color: #EEEEEE;
+    font-size: 1.3rem;
+    padding: 0.625rem;
+    border-radius: 4px;
+    border-top: 1px solid rgba(255, 255, 255, 0.234);
+    border-left: 1px solid rgba(255, 255, 255, 0.234);
+    cursor: default;
+}
+/*Duas caixinhas flutuantes*/
+.container-2 .span-1{
+    display: flex;
+    height: 3.125rem;
+    width: 3.125rem;
+}
+.container-2 .span-1::before{
+    content: "";
+    display: flex;
+    margin: 0  0 0 -40vw;
+    width: 100%;
+    height: 100%;
+    border-radius: 8px;
+    background: linear-gradient(315deg, #FAF3F3, #79A3B1);
+    box-shadow: 0px 0px 20px 7px #79A3B188 ;
+    transition: 0.5s;
+    animation: animado 1.8s ease-in-out infinite;
+}
+.container-2 .span-1::after{
+    content: "";
+    display: flex;
+    margin: 71vh 0 0 23vw;
+    width: 100%;
+    height: 100%;
+    border-radius: 8px;
+    background: linear-gradient(315deg, #FAF3F3, #79A3B1);
+    box-shadow: 0px 0px 20px 7px #79A3B188 ;
+    transition: 0.5s;
+    animation: animado 1.8s ease-in-out infinite;
+}
+/*Mais duas caixinhas flutuantes*/
+.container-2 .span-2{
+    display: flex;
+    height: 3.125rem;
+    width: 3.125rem;
+    margin-left: 60vw;
+}
+.container-2 .span-2::before{
+    content: "";
+    display: flex;
+    margin: -7vh 0 0 -15vw;
+    width: 100%;
+    height: 100%;
+    border-radius: 8px;
+    background: linear-gradient(315deg, #FAF3F3, #79A3B1);
+    box-shadow: 0px 0px 20px 7px #79A3B188 ;
+    transition: 0.5s;
+    animation: animado 1.8s ease-in-out infinite;
+}
+.container-2 .span-2::after{
+    content: "";
+    display: flex;
+    margin: -75vh 0 0 7vw;
+    width: 100%;
+    height: 100%;
+    border-radius: 8px;
+    background: linear-gradient(315deg, #faf3f3, #79a3b1);
+    box-shadow: 0px 0px 20px 7px #79A3B188 ;
+    transition: 0.5s;
+    animation: animado 1.8s ease-in-out infinite;
+}
+
+/* Quarta Pagina é uma cópia descarada da terceira kkkkk*/
+
+.container-2 .span-3{
+    display: flex;
+    height: 3.125rem;
+    width: 3.125rem;
+}
+.container-2 .span-3::before{
+    content: "";
+    display: flex;
+    margin: 0  0 0 -40vw;
+    width: 100%;
+    height: 100%;
+    border-radius: 8px;
+    background: linear-gradient(315deg, #FAF3F3, #7C9473);
+    box-shadow: 0px 0px 20px 7px #7C947388 ;
+    transition: 0.5s;
+    animation: animado 1.8s ease-in-out infinite;
+}
+.container-2 .span-3::after{
+    content: "";
+    display: flex;
+    margin: 71vh 0 0 23vw;
+    width: 100%;
+    height: 100%;
+    border-radius: 8px;
+    background: linear-gradient(315deg, #FAF3F3, #7C9473);
+    box-shadow: 0px 0px 20px 7px #7C947388 ;
+    transition: 0.5s;
+    animation: animado 1.8s ease-in-out infinite;
+}
+/*Mais duas caixinhas flutuantes*/
+.container-2 .span-4{
+    display: flex;
+    height: 3.125rem;
+    width: 3.125rem;
+    margin-left: 60vw;
+}
+.container-2 .span-4::before{
+    content: "";
+    display: flex;
+    margin: -7vh 0 0 -15vw;
+    width: 100%;
+    height: 100%;
+    border-radius: 8px;
+    background: linear-gradient(315deg, #FAF3F3, #7C9473);
+    box-shadow: 0px 0px 20px 7px #7C947388 ;
+    transition: 0.5s;
+    animation: animado 1.8s ease-in-out infinite;
+}
+.container-2 .span-4::after{
+    content: "";
+    display: flex;
+    margin: -75vh 0 0 7vw;
+    width: 100%;
+    height: 100%;
+    border-radius: 8px;
+    background: linear-gradient(315deg, #faf3f3, #7C9473);
+    box-shadow: 0px 0px 20px 7px #7C947388 ;
+    transition: 0.5s;
+    animation: animado 1.8s ease-in-out infinite;
+}
+
+/* Editando a ultima Pagina */
+
+.container-3{
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    flex-direction: column;
+}
+
+.container-3 .row{
+    position: relative;
+    width: 100%;
+    display: flex;
+    padding: 0.625rem 0;
+    flex-wrap: nowrap;
+    font-size: 3em;
+
+}
+
+
+.row i{
+    color: white;
+}
+
+/*Pagina do Video*/
+
+.video{
+    width: 85vw;
+    height: 70vh; 
+}
+
+.container-2 .btn{
+    margin-top: 1rem;
+}
+
+.container-2 .btn a{
+    margin: 0 1rem 0 1rem;
+    
+}
+
+/* Transformando em responsivo */
+
+@media (max-width: 760px){
+    section{
+        flex-direction: column-reverse;
+    }
+    .box{
+        height: 20rem ;
+        width: 20rem ;
+        box-shadow:  15px 15px 45px #1d1d1d,
+             -15px -15px 45px #333333;
+    }
+    .conteudo .card{
+        margin-top: 8rem;
+    }
+    .conteudo{
+        flex-direction: column;
+        margin-top: 11.563rem;
+    }
+    .box2{
+        width: 65vw;
+        height: 80vh;
+        margin-bottom: 1.5vh;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 3vh 15vw;;
+    }
+    .title{
+        width: 80vw;
+        height: 2vh;
+        margin-bottom: 0.5vh;
+        padding: 1.5vh 0vw 5vh 0;
+        font-size: 1.2em;
+    }
+    .box2 p{
+        font-size: 0.9rem;
+        width: 85vw;
+        margin-bottom: 2.5vh
+    }
+    .box2 a{
+        font-size: 1.3rem;
+        padding: 0.4rem;
+        margin: 0 5vw;
+    }
+    .depois{
+        display: flex;
+        flex-direction: row;
+    }
+    .container .seta1{
+        margin: -5vh 0vw 5vh 0vw;
+        font-size: 1rem;
+        padding: 0.4rem;
+    }
+    .container .seta2{
+        margin: -5vh 0vw 5vh 0vw;
+        font-size: 1rem;
+        padding: 0.4rem;
+    }
+    .container-2 .span-1::before{
+        margin-top: 5vh;
+        margin-left: 36vw;
+    }
+    .container-2 .span-1::after{
+        margin-top: 89vh;
+        margin-left: -85vw;
+    }
+    .container-2 .span-2::before{
+        margin-top: -6vh ;
+        margin-left: 9vw ;
+    }
+    .container-2 .span-2::after{
+        margin-top: -90vh ;
+        margin-left: -92vw ;
+    }
+    .container-2 .span-3::before{
+        margin-top: 5vh;
+        margin-left: 36vw;
+    }
+    .container-2 .span-3::after{
+        margin-top: 89vh;
+        margin-left: -85vw;
+    }
+    .container-2 .span-4::before{
+        margin-top: -6vh ;
+        margin-left: 9vw ;
+    }
+    .container-2 .span-4::after{
+        margin-top: -90vh ;
+        margin-left: -92vw ;
+    }
+    .video{
+        width: 95vw;
+        height: 40vh;
+    }
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
