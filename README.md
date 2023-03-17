@@ -1,4 +1,4 @@
-## Bem vindo ao meu primeiro Portifólio!! ✨
+# Bem vindo ao meu primeiro Portifólio!! ✨
 
 Para iniciar o projeto siga esses passos: 
 
@@ -7,6 +7,8 @@ Para iniciar o projeto siga esses passos:
 - Clique no arquivo HTML;
 
 Ou se preferir, acesse esse link: https://meuportfolio.criticalnoob.repl.co/
+
+## Resumo
 
 Criei esse projeto com o intuito de colorar em prática tudo o que tinha aprendido sobre HTML e CSS, ele não possui nada de JS em usa base.
 
